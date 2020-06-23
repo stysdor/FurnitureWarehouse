@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping namespace="Core.Domain" assembly="Core" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Order" table="Orders"  batch-size="25">
+    <id name="Id" column="Id" type="Int32">
+      <generator class="native" />
+    </id>
+    <property name="Amount" />
+    <property name="OrderDate" />
+    
+    <bag name="ProductOrders"  inverse="true"
+       batch-size="25" cascade="all-delete-orphan" >
+      <key column="OrderId" />
+      <one-to-many class="ProductOrder" />
+    </bag>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+﻿@model List<Furniture.Models.ProductModel>
+@{
+    ViewBag.Title = "Lista produktów";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr class="row">
+                <th class="col-3">Nazwa</th>
+                <th class="col-2">Kolor</th>
+                <th class="col-2">Kategoria</th>
+                <th class="col-1">Cena</th>
+                <th class="col-1">Ilość na magazynie</th>
+                <th colspan="2" class="add-button col-2">@Html.ActionLink("Dodaj produkt", "AddProduct", "Product", new { @class = "btn btn-primary btn-block btn-sm pull-right" }) </th>
+            </tr>
+        </thead>
+        <tbody class="list-body">
+            @foreach (var product in Model)
+            {
+                @Html.Hidden("Id", product.Id)
+                <tr class="row">
+                    <td class="col-3">@product.Name</td>
+                    <td class="col-2">@product.Color.Name</td>
+                    <td class="col-2">@product.Category.Name</td>
+                    <td class="col-1">@product.Price</td>
+                    <td class="col-1">@product.Quantity</td>
+                    <td class="col-1">@Html.ActionLink("Edytuj", "EditProduct", product, new { @class = "btn btn-primary btn-block btn-sm pull-right" }) </td>
+                    <td class="col-1">@Html.ActionLink("Usuń", "DeleteProduct", product, new { @class = "btn btn-primary btn-block btn-sm pull-right" }) </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
